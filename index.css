@@ -1,13 +1,14 @@
-<html>
+body {
+  font-family: Arial, sans-serif;
+}
 
-<head>
-    <h1>EECS 348 Lab Six</h1>
-</head>
+#text {
+  color: black;
+}
 
-<body>
-    Eric Chen EECS 348 Lab 2<br>
-    
-    
-</body>
-
-</html>
+#myText {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  width: 200px; /* default starting width */
+}
