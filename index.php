@@ -8,8 +8,7 @@
   Eric Chen EECS 348 Lab 2<br>
   <img src="e_c.jpeg" alt="ME!!!"><br>
   <a href="https://github.com/Chen-j-Eric">my github</a><br>
-  <iframe width="420" height="315" src="https://www.youtube.com/embed/watch?v=-Gnrp_caPvo"></iframe><br><br>
-
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-Gnrp_caPvo?si=ZsNIAEg3nCiM_Ev4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   <h1 id="text">This text will change!</h1>
 
   <label for="color">Text Color:</label>
@@ -101,17 +100,58 @@ $number = isset($_GET['number']) ? (int) $_GET['number'] : 3;
     <input type="number" id="number" name="number" value="<?= $number ?>">
     <button type="submit">Show table</button>
 </form>
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication Table</title>
+</head>
+<body>
+
+<!-- Input Form -->
+<form method="GET" action="">
+    <label for="number">Enter Table Size:</label>
+    <input type="number" id="number" name="number" min="1" value="<?php echo isset($_GET['number']) ? (int)$_GET['number'] : 5; ?>">
+    <button type="submit">Generate Table</button>
+</form>
+
+<hr>
 
 <?php
-$i = 1;
+// Get the input number from the user URL query string, defaulting to 5
+$number = isset($_GET['number']) ? (int)$_GET['number'] : 5;
 
-echo "Multiplication table for $number:<br>";
-while ($i <= 10) {
-    $result = $number * $i;
-    echo "$number x $i = $result<br>";
-    $i++;
+// Ensure valid input (at least 1)
+if ($number >= 1) {
+    echo "<h3>$number &times; $number Multiplication Table</h3>";
+    echo "<table border='1' cellpadding='8' cellspacing='0'>";
+
+    // Header Row: Column Indexes
+    echo "<tr>";
+    echo "<th>&times;</th>";
+    for ($col = 1; $col <= $number; $col++) {
+        echo "<th>Col $col</th>";
+    }
+    echo "</tr>";
+
+    // Outer loop for Rows
+    for ($row = 1; $row <= $number; $row++) {
+        echo "<tr>";
+        
+        // Row Index Label
+        echo "<th>Row $row</th>";
+        
+        // Inner loop for Columns
+        for ($col = 1; $col <= $number; $col++) {
+            $result = $row * $col;
+            echo "<td>$result</td>";
+        }
+        
+        echo "</tr>";
+    }
+
+    echo "</table>";
+} else {
+    echo "<p>Please enter a positive integer greater than 0.</p>";
 }
 ?>
-
 </body>
 </html>
